@@ -5,13 +5,16 @@ var app = express();
 
 app.engine('ejs', ejs.renderFile);
 
+app.use(express.static('public'));
+
 app.get('/', function (req, res) {
+    var msg = 'This is Express Page!<br>'
+        + 'これは、スタイルシートを利用した例です。';
     res.render('index.ejs', {
-        title: 'Index',
-        content: 'This is Express-app Top page!'
+        title: 'Index', content: msg
     });
 });
 
 app.listen(3000, function () {
-    console.log('Start server port:3000');
+    console.log('Server is running!');
 });
