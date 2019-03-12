@@ -7,14 +7,27 @@ app.engine('ejs', ejs.renderFile);
 
 app.use(express.static('public'));
 
+// ※トップページ
 app.get('/', function (req, res) {
     var msg = 'This is Express Page!<br>'
         + 'これは、スタイルシートを利用した例です。';
     res.render('index.ejs', {
-        title: 'Index', content: msg
+        title: 'Index', 
+        content: msg, 
+        link: {href: '/other', text: '※別のページに移動'}
     });
 });
 
+// ※otherページ
+app.get('/other', function (req, res) {
+    var msg = 'This is Other Page!<br>'
+        + 'これは、用意された別のページです。';
+    res.render('index.ejs', {
+        title: 'Other',
+        content: msg,
+        link: {href: '/', text: '※トップに戻る'}
+    });
+})
 app.listen(3000, function () {
     console.log('Server is running!');
 });
