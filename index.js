@@ -9,13 +9,21 @@ app.use(express.static('public'));
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: false}));
 
+var data = {
+    'Taro': 'taro@yamada',
+    'Hanako': 'hanako@flover',
+    'Sachiko': 'sachiko@happy',
+    'Ichiro': 'ichiro@baseball'
+};
+
 // ※トップページ
 app.get('/', function (req, res) {
     var msg = 'This is Express Page!<br>'
-        + 'メッセージを書いて送信してください。';
+        + '※データを表示します。';
     res.render('index.ejs', {
         title: 'Index', 
-        content: msg, 
+        content: msg,
+        data: data
     });
 });
 
